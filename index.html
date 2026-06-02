@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concursa AI – Inteligência Artificial para Concurso Público | Seja Aprovado com IA</title>
+  <meta name="description" content="A primeira Inteligência Artificial feita para concurso público. Gere resumos, simulados, flashcards e planeje seus estudos com IA. Seja aprovado no próximo concurso." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1713108412669371');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1713108412669371&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <style>
+    :root {
+      /* Backgrounds */
+      --bg-dark: #0d0c0a;
+      --bg-dark-2: #15130f;
+      --bg-card: #1c1a15;
+      --bg-card-hover: #25221b;
+
+      /* Neutros */
+      --n100: #e8e6df;
+      --n200: #d7d2cb;
+      --n600: #6e6259;
+      --n900: #3d3935;
+      --text-primary: #e8e6df;
+      --text-secondary: #b8afa6;
+      --text-muted: #756c64;
+
+      /* Marca amarela */
+      --y100: #f1eb9c;
+      --y400: #f3e600;
+      --y500: #e1cd00;
+      --y600: #cfb500;
+
+      /* Marca laranja */
+      --c100: #faaa8d;
+      --c400: #f87c56;
+      --c500: #f4633a;
+      --c700: #be531c;
+
+      /* Bordas */
+      --border: rgba(243, 230, 0, 0.08);
+      --border-accent: rgba(243, 230, 0, 0.2);
+      --ring: #cfb500;
+
+      /* Estados */
+      --destructive: #82181a;
+      --input: #323232;
+
+      /* Efeitos */
+      --glow-y: 0 0 40px rgba(243, 230, 0, 0.12);
+      --glow-c: 0 0 40px rgba(248, 124, 86, 0.08);
+
+      /* Raios */
+      --radius: 14px;
+      --radius-sm: 10px;
+
+      /* Fontes */
+      --font: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: var(--font);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .landing-section { padding: 64px 0; }
+
+    /* ---------- Tipografia utilitária ---------- */
+    .headline-gradient {
+      background: linear-gradient(90deg, #f3e600 0%, #f4633a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    h1, h2, h3 { letter-spacing: -0.4px; }
+
+    .h-sec {
+      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .lead {
+      color: var(--text-secondary);
+      font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+      max-width: 680px;
+    }
+
+    .center { text-align: center; }
+    .center .lead { margin-left: auto; margin-right: auto; }
+
+    .section-head { margin-bottom: 44px; }
+
+    /* ---------- Badge / pill ---------- */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: var(--y400);
+      background: rgba(243, 230, 0, 0.05);
+      padding: 7px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border-accent);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .badge::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #3ddc84;
+      box-shadow: 0 0 8px #3ddc84;
+    }
+    .badge.warn::before { background: var(--c500); box-shadow: 0 0 8px var(--c500); }
+    .badge.y::before { background: var(--y400); box-shadow: 0 0 8px var(--y400); }
+
+    /* ---------- Botão CTA ---------- */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 13.76px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: var(--n900);
+      background: linear-gradient(135deg, #f3e600 0%, #e1cd00 100%);
+      padding: 16px 28px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--glow-y);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(243,230,0,0.25); }
+    .btn-primary svg { width: 16px; height: 16px; }
+    .btn-full { width: 100%; }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      background: rgba(13,12,10,0.6);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .site-header .container { display: flex; align-items: center; justify-content: space-between; }
+    .logo {
+      font-family: var(--font);
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+    .logo span { color: var(--y400); }
+    .menu-btn {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border-accent);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--n100);
+      cursor: pointer;
+    }
+    .menu-btn svg { width: 20px; height: 20px; }
+
+    /* ---------- First fold (vídeo VSL) ---------- */
+    .vsl {
+      padding: 120px 0 60px;
+      text-align: center;
+      position: relative;
+    }
+    .vsl::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; max-width: 90%;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(243,230,0,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .vsl h1 {
+      font-size: clamp(1.9rem, 5.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.5px;
+      max-width: 880px;
+      margin: 0 auto 18px;
+    }
+    .vsl .lead { margin: 0 auto 36px; text-align: center; }
+    .player-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-accent);
+      box-shadow: var(--glow-y);
+      overflow: hidden;
+      background: #000;
+    }
+    .video-note {
+      margin-top: 22px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .video-note .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--c500);
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    /* ---------- Reveal container ---------- */
+    #pitch { display: none; }
+    #pitch.is-visible { display: block; animation: fadeUp .7s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+    /* ---------- Social proof bar ---------- */
+    .social-proof {
+      background: rgba(243, 230, 0, 0.02);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-num { font-size: clamp(1.4rem, 4vw, 1.9rem); font-weight: 800; color: var(--y400); }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ---------- Cards genéricos ---------- */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      transition: background .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .card:hover { background: var(--bg-card-hover); border-color: var(--border-accent); transform: translateY(-3px); }
+
+    .icon-box {
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-sm);
+      background: rgba(243,230,0,0.06);
+      border: 1px solid var(--border-accent);
+      color: var(--y400);
+      margin-bottom: 16px;
+    }
+    .icon-box svg { width: 22px; height: 22px; }
+
+    .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+    .chip {
+      display: inline-block;
+      margin-top: 16px;
+      font-family: var(--mono);
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      color: var(--y400);
+      background: rgba(243,230,0,0.05);
+      border: 1px solid var(--border-accent);
+      border-radius: 6px;
+      padding: 6px 10px;
+    }
+
+    /* alt section bg */
+    .bg-alt { background: var(--bg-dark-2); }
+
+    /* ---------- Problema ---------- */
+    .pain-list { display: grid; gap: 12px; max-width: 760px; margin: 0 auto; }
+    .pain-item {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+    }
+    .pain-x {
+      flex: none;
+      width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: rgba(244,99,58,0.12);
+      color: var(--c500);
+    }
+    .pain-x svg { width: 16px; height: 16px; }
+    .pain-item span { font-family: var(--mono); font-size: 0.9rem; color: var(--text-secondary); }
+
+    /* ---------- 3 passos ---------- */
+    .steps-grid, .features-grid, .benefits-grid, .testimonials-grid, .pricing-grid {
+      display: grid; gap: 22px;
+    }
+    .steps-grid { grid-template-columns: repeat(3, 1fr); }
+    .step-label {
+      font-family: var(--mono); font-size: 11px; font-weight: 600;
+      letter-spacing: 1px; color: var(--y400); text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .step-ok {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 16px;
+      font-family: var(--mono); font-size: 11px;
+      color: #3ddc84;
+      background: rgba(61,220,132,0.08);
+      border: 1px solid rgba(61,220,132,0.25);
+      border-radius: 6px; padding: 6px 10px;
+    }
+
+    /* ---------- Funcionalidades ---------- */
+    .features-grid { grid-template-columns: repeat(4, 1fr); }
+
+    /* ---------- Benefícios ---------- */
+    .benefits-grid { grid-template-columns: repeat(3, 1fr); }
+
+    /* ---------- Depoimentos ---------- */
+    .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+    .stars { color: var(--y400); letter-spacing: 2px; font-size: 0.95rem; margin-bottom: 14px; }
+    .quote { color: var(--n200); font-size: 0.98rem; font-style: italic; }
+    .quote::before { content: "\201C"; color: var(--c500); font-size: 1.8rem; line-height: 0; vertical-align: -0.4em; margin-right: 4px; }
+    .t-divider { height: 1px; background: var(--border-accent); margin: 20px 0; }
+    .t-person { display: flex; align-items: center; gap: 12px; }
+    .avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-weight: 700; font-size: 0.85rem; color: #fff;
+      background: linear-gradient(135deg, #f3e600, #f4633a);
+    }
+    .t-name { font-family: var(--mono); font-weight: 600; font-size: 0.9rem; }
+    .t-status { font-family: var(--mono); font-size: 10px; letter-spacing: 0.5px; color: #3ddc84; text-transform: uppercase; }
+
+    /* ---------- Pricing ---------- */
+    .pricing-grid { grid-template-columns: minmax(0, 440px); justify-content: center; max-width: 880px; margin: 0 auto; }
+    .plan {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      overflow: hidden;
+    }
+    .plan.featured { border-color: var(--border-accent); box-shadow: var(--glow-y); }
+    .ribbon {
+      position: absolute; top: 18px; right: -42px;
+      transform: rotate(35deg);
+      background: linear-gradient(135deg, var(--c500), var(--c700));
+      color: #fff;
+      font-family: var(--mono); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      padding: 6px 50px;
+    }
+    .plan .plan-pill { margin-bottom: 18px; }
+    .price-old { color: var(--text-muted); text-decoration: line-through; font-size: 0.95rem; }
+    .price-now { font-size: clamp(2rem, 6vw, 2.6rem); font-weight: 800; color: var(--y400); line-height: 1.1; margin: 6px 0; }
+    .price-now small { font-size: 1rem; font-weight: 600; color: var(--text-secondary); }
+    .price-cash { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 22px; }
+    .plan-features { list-style: none; display: grid; gap: 12px; margin: 22px 0; }
+    .plan-features li { display: flex; align-items: flex-start; gap: 10px; font-family: var(--mono); font-size: 0.85rem; color: var(--text-secondary); }
+    .plan-features li svg { flex: none; width: 16px; height: 16px; color: #3ddc84; margin-top: 1px; }
+    .bonus-divider {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--y400); text-align: center; margin: 22px 0 14px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .bonus-divider::before, .bonus-divider::after { content: ""; flex: 1; height: 1px; background: var(--border-accent); }
+    .plan-foot { margin-top: 18px; text-align: center; font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+
+    /* ---------- FAQ ---------- */
+    .faq-list { max-width: 760px; margin: 0 auto; display: grid; gap: 12px; }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; text-align: left;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      font-family: var(--mono); font-size: 0.92rem; font-weight: 600; color: var(--n100);
+      background: transparent; border: none; cursor: pointer;
+      padding: 18px 20px;
+    }
+    .faq-q svg { flex: none; width: 18px; height: 18px; color: var(--y400); transition: transform .25s ease; }
+    .faq-item.open .faq-q svg { transform: rotate(180deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+    .faq-a p { padding: 0 20px 18px; color: var(--text-secondary); font-size: 0.95rem; }
+    .faq-item.open .faq-a { max-height: 320px; }
+
+    /* ---------- Final CTA ---------- */
+    .final-cta { text-align: center; }
+    .final-cta .inner {
+      background: radial-gradient(ellipse at center, rgba(243,230,0,0.06), transparent 70%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 56px 24px;
+    }
+
+    /* ---------- Footer ---------- */
+    .site-footer { background: var(--bg-dark-2); padding: 56px 0 28px; border-top: 1px solid var(--border); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 32px; margin-bottom: 36px; }
+    .footer-grid p { color: var(--text-secondary); font-size: 0.92rem; max-width: 320px; margin-top: 12px; }
+    .footer-col h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+    .footer-col a { display: block; color: var(--text-secondary); font-size: 0.9rem; padding: 5px 0; }
+    .footer-col a:hover { color: var(--y400); }
+    .copyright { text-align: center; color: var(--text-muted); font-size: 0.82rem; padding-top: 24px; border-top: 1px solid var(--border); font-family: var(--mono); }
+
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid, .benefits-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .landing-section { padding: 48px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="container">
+      <a href="#" class="logo">concursa<span>.ai</span></a>
+      <button class="menu-btn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ DOBRA 1: VÍDEO VSL ============ -->
+  <section class="vsl">
+    <div class="container">
+      <span class="badge y">Status: melhor IA para concurso público</span>
+      <h1>Dê o play e conheça essa <span class="headline-gradient">Nova Inteligência Artificial</span> para concurseiros.</h1>
+      <p class="lead">Funciona para Qualquer Banca • Funciona para Qualquer Concurso • 100x mais potente que o ChatGPT</p>
+
+      <!-- Player vturb / converteai -->
+      <div class="player-wrap">
+        <vturb-smartplayer id="vid-6a1f274da6241662de48d997" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
+      </div>
+
+      <div class="video-note"><span class="dot"></span> Assista o vídeo completo para liberar o seu acesso</div>
+    </div>
+  </section>
+
+  <!-- ============ CONTEÚDO CONDICIONAL (revela em 19:30) ============ -->
+  <div id="pitch">
+
+    <!-- Social proof -->
+    <section class="social-proof">
+      <div class="container">
+        <div class="stats-grid">
+          <div><div class="stat-num">+5.000</div><div class="stat-label">Usuários ativos</div></div>
+          <div><div class="stat-num">+1M</div><div class="stat-label">Resumos</div></div>
+          <div><div class="stat-num">97.4%</div><div class="stat-label">De satisfação</div></div>
+          <div><div class="stat-num">24/7</div><div class="stat-label">Suporte integral</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problema -->
+    <section class="landing-section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="badge warn">Atenção!</span>
+          <h2 class="h-sec">Se o método tradicional fosse realmente o melhor, <span class="headline-gradient">por que só a minoria passa?</span></h2>
+          <p class="lead">Tem gente que nunca muda a forma de estudar e mesmo assim espera resultados diferentes…</p>
+        </div>
+        <div class="pain-list">
+          <div class="pain-item"><span class="pain-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>Estuda horas sem saber o que realmente cai na prova</span></div>
+          <div class="pain-item"><span class="pain-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>Não consegue manter uma rotina consistente de estudos</span></div>
+          <div class="pain-item"><span class="pain-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>Fica perdido entre dezenas de materiais e apostilas</span></div>
+          <div class="pain-item"><span class="pain-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>Trabalha o dia inteiro e acha que não tem tempo</span></div>
+          <div class="pain-item"><span class="pain-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span><span>Já tentou várias vezes e nunca foi aprovado</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 passos -->
+    <section class="landing-section bg-alt">
+      <div class="container">
+        <div class="section-head center">
+          <span class="badge">Essa é a nova forma de ser aprovado!</span>
+          <h2 class="h-sec">Esses são os 3 passos para <span class="headline-gradient">conquistar sua aprovação!</span></h2>
+          <p class="lead">A Inteligência Artificial é o que vai definir quem estará na lista de aprovados daqueles que terão que estudar mais um ano!</p>
+        </div>
+        <div class="steps-grid">
+          <div class="card">
+            <div class="step-label">Passo 01</div>
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <h3>Faça seu login</h3>
+            <p>Acesse a plataforma em segundos e tenha todas as ferramentas de IA à sua disposição imediatamente.</p>
+            <div class="step-ok">✓ Acesso liberado</div>
+          </div>
+          <div class="card">
+            <div class="step-label">Passo 02</div>
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <h3>Use as ferramentas</h3>
+            <p>Gere resumos, flashcards, simulados e questões com IA. Planeje seus estudos com base na sua rotina real.</p>
+            <div class="step-ok">✓ 8 ferramentas ativas</div>
+          </div>
+          <div class="card">
+            <div class="step-label">Passo 03</div>
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
+            <h3>Seja aprovado</h3>
+            <p>Siga o plano gerado pela IA e domine os conteúdos que mais caem. A IA ajusta a rota conforme seu desempenho.</p>
+            <div class="step-ok">✓ Resultado: APROVADO</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Funcionalidades -->
+    <section class="landing-section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="badge">Funcionalidades!</span>
+          <h2 class="h-sec">Essas são todas as funcionalidades que você vai receber na <span class="headline-gradient">Concursa AI</span></h2>
+          <p class="lead">Todas essas funcionalidades em 1 só lugar!</p>
+        </div>
+        <div class="features-grid">
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <h3>Planejador de Estudos com IA</h3>
+            <p>Cronograma 100% personalizado com base no seu tempo, metas e nível de preparação. A IA organiza tudo automaticamente.</p>
+            <span class="chip">Automático</span>
+          </div>
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div>
+            <h3>Gerador de Resumos Completos</h3>
+            <p>Resumos prontos e atualizados em segundos. Qualquer matéria, qualquer concurso, direto ao ponto — sem enrolação.</p>
+            <span class="chip">Instantâneo</span>
+          </div>
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <h3>Simulados por Banca</h3>
+            <p>Provas simuladas no estilo exato da banca do seu concurso. A IA identifica os padrões de cobrança históricos.</p>
+            <span class="chip">Padrões da Banca</span>
+          </div>
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+            <h3>Flashcards Inteligentes</h3>
+            <p>Decore leis, fórmulas e detalhes difíceis com flashcards gerados automaticamente no nível ideal para você.</p>
+            <span class="chip">Memorização</span>
+          </div>
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></div>
+            <h3>Gerador de Questões</h3>
+            <p>Questões focadas no conteúdo mais cobrado. A IA detecta assuntos frequentes e gera questões na hora.</p>
+            <span class="chip">Alta Frequência</span>
+          </div>
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+            <h3>Painel de Desempenho</h3>
+            <p>Acompanhe sua evolução em tempo real, identifique pontos fracos e compare sua nota com a média dos aprovados.</p>
+            <span class="chip">Tempo Real</span>
+          </div>
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <h3>Tutor IA 24 horas</h3>
+            <p>Tire dúvidas, peça explicações e tenha um professor particular disponível 24 horas por dia, 7 dias por semana.</p>
+            <span class="chip">Sempre Online</span>
+          </div>
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+            <h3>Conteúdo de Todas as Disciplinas</h3>
+            <p>Base completa com conteúdos claros e organizados, gerados especificamente para o seu concurso.</p>
+            <span class="chip">Cobertura Total</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resultados / Benefícios -->
+    <section class="landing-section bg-alt">
+      <div class="container">
+        <div class="section-head center">
+          <span class="badge">Resultados!</span>
+          <h2 class="h-sec">O que você conquista com o <span class="headline-gradient">Concursa AI</span></h2>
+        </div>
+        <div class="benefits-grid">
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <h3>Estabilidade Financeira</h3>
+            <p>Conquiste a segurança de um cargo público com salário garantido e previsível.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <h3>10x Mais Rápido</h3>
+            <p>Memorize conteúdos muito mais rápido com flashcards inteligentes e resumos otimizados.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+            <h3>Estude o que Cai</h3>
+            <p>A IA identifica os assuntos mais cobrados para você focar no que realmente importa.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <h3>Planejamento Realista</h3>
+            <p>Cronograma que respeita sua rotina de trabalho, família e tempo disponível.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <h3>Saia na Frente</h3>
+            <p>Use tecnologia que 99% dos concurseiros ainda não conhecem — saia na frente.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+            <h3>Realize Seus Sonhos</h3>
+            <p>Casa própria, viagens, independência — tudo começa com a aprovação.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="landing-section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="badge">Depoimentos</span>
+          <h2 class="h-sec">Histórias de quem já está <span class="headline-gradient">na frente</span></h2>
+        </div>
+        <div class="testimonials-grid">
+          <div class="card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">O planejador mudou minha vida. Trabalho 8h por dia e achava impossível estudar — a IA organizou tudo pra mim.</p>
+            <div class="t-divider"></div>
+            <div class="t-person"><div class="avatar">MR</div><div><div class="t-name">Mariana R.</div><div class="t-status">Aprovada — TRT</div></div></div>
+          </div>
+          <div class="card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">Os simulados são idênticos ao padrão Cebraspe. Nível de precisão absurdo. Recomendo 100%.</p>
+            <div class="t-divider"></div>
+            <div class="t-person"><div class="avatar">LC</div><div><div class="t-name">Lucas C.</div><div class="t-status">Concurseiro — PRF</div></div></div>
+          </div>
+          <div class="card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">Em 3 semanas meu desempenho disparou. Os flashcards são viciantes e muito eficientes.</p>
+            <div class="t-divider"></div>
+            <div class="t-person"><div class="avatar">AS</div><div><div class="t-name">Ana S.</div><div class="t-status">Concurseira — Área Fiscal</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="landing-section bg-alt">
+      <div class="container">
+        <div class="section-head center">
+          <span class="badge">Investimento</span>
+          <h2 class="h-sec">Escolha o plano ideal para <span class="headline-gradient">sua aprovação</span></h2>
+        </div>
+        <div class="pricing-grid">
+          <!-- Trimestral -->
+          <div class="plan">
+            <span class="badge plan-pill">Plano Trimestral</span>
+            <div class="price-old">de R$ 1.302,00</div>
+            <div class="price-now"><small>3x de</small> R$ 73,51</div>
+            <div class="price-cash">ou R$ 197,00 à vista</div>
+            <ul class="plan-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Acesso completo à plataforma por 3 meses</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Todas as 8 ferramentas de IA</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Planejador, resumos, simulados e flashcards</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Tutor IA 24h e painel de desempenho</li>
+            </ul>
+            <a href="https://pay.hub.la/YY70fYb2WcWVNJwNKXFV" class="btn-primary btn-full">Quero o Trimestral!
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <div class="plan-foot">🔒 Acesso imediato após a compra</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="landing-section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="badge">Dúvidas Frequentes</span>
+          <h2 class="h-sec">Perguntas <span class="headline-gradient">respondidas</span></h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q">O que é o Concursa AI? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="faq-a"><p>O Concursa AI é a primeira inteligência artificial desenvolvida exclusivamente para concurso público. Ele gera resumos, flashcards, simulados personalizados, planeja seus estudos e identifica padrões de questões da sua banca.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">Funciona para qualquer concurso? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="faq-a"><p>Sim. O Concursa AI identifica os padrões de qualquer banca do Brasil — CESPE, FCC, FGV, VUNESP, e todas as outras — e gera conteúdo personalizado para o concurso que você está se preparando.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">Preciso ter experiência com tecnologia? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="faq-a"><p>Não. Apesar da interface ter cara de produto tech, o Concursa AI foi pensado para ser simples e intuitivo. Basta fazer login e começar a usar as ferramentas.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">Quanto tempo leva para ver resultados? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="faq-a"><p>Desde o primeiro dia você já consegue gerar resumos, flashcards e simulados. A maioria dos usuários reporta melhora significativa em menos de 2 semanas.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">Como recebo o acesso após a compra? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="faq-a"><p>Imediatamente após a confirmação do pagamento, você recebe o acesso no seu e-mail.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q">O Concursa AI é melhor que o ChatGPT? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <div class="faq-a"><p>Para concurso público, sim. O ChatGPT é uma IA genérica. O Concursa AI foi treinado e otimizado especificamente para concurso público brasileiro.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="landing-section final-cta">
+      <div class="container">
+        <div class="inner">
+          <span class="badge">Pronto para começar?</span>
+          <h2 class="h-sec">Sua aprovação começa com <span class="headline-gradient">inteligência artificial</span></h2>
+          <p class="lead" style="margin: 0 auto 28px;">Pare de estudar no escuro. Deixe a IA mostrar o caminho mais rápido para o seu cargo público.</p>
+          <a href="https://pay.hub.la/YY70fYb2WcWVNJwNKXFV" class="btn-primary">Começar agora!
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a href="#" class="logo">concursa<span>.ai</span></a>
+            <p>A primeira IA do Brasil desenvolvida exclusivamente para concurso público.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Produto</h4>
+            <a href="#funcionalidades">Funcionalidades</a>
+            <a href="#preco">Preço</a>
+            <a href="#faq">Dúvidas</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="#">Termos de Uso</a>
+            <a href="#">Privacidade</a>
+            <a href="#">Contato</a>
+          </div>
+        </div>
+        <div class="copyright">© 2026 Concursa AI — EG Educação Digital. Todos os direitos reservados.</div>
+      </div>
+    </footer>
+
+  </div><!-- /#pitch -->
+
+  <!-- ============ SCRIPTS ============ -->
+  <!-- Player vturb / converteai -->
+  <script type="text/javascript">
+    var s = document.createElement("script");
+    s.src = "https://scripts.converteai.net/e98d8403-5ac0-4e54-9976-5c8a763f35c8/players/6a1f274da6241662de48d997/v4/player.js";
+    s.async = !0;
+    document.head.appendChild(s);
+  </script>
+
+  <!-- Reveal do conteúdo após 19min30s (1170s) do vídeo + FAQ -->
+  <script type="text/javascript">
+    (function () {
+      var SECONDS_TO_DISPLAY = 1170; // 19min30s — tempo do pitch
+      var pitch = document.getElementById('pitch');
+      var revealed = false;
+
+      function reveal() {
+        if (revealed) return;
+        revealed = true;
+        pitch.classList.add('is-visible');
+      }
+
+      // Preview/dev: abra a página com ?reveal=1 para liberar o conteúdo imediatamente.
+      if (/[?&]reveal=1/.test(window.location.search)) reveal();
+
+      function attachToPlayer() {
+        if (typeof smartplayer === 'undefined' || !(smartplayer.instances && smartplayer.instances.length)) {
+          return false;
+        }
+        var inst = smartplayer.instances[0];
+        inst.on('timeupdate', function () {
+          if (inst.video && inst.video.currentTime >= SECONDS_TO_DISPLAY) {
+            reveal();
+          }
+        });
+        return true;
+      }
+
+      // O player carrega de forma assíncrona — aguardamos a instância ficar disponível.
+      var poll = setInterval(function () {
+        if (revealed || attachToPlayer()) clearInterval(poll);
+      }, 500);
+    })();
+
+    // FAQ acordeon
+    document.querySelectorAll('.faq-q').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btn.parentElement.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>

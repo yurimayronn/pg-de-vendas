@@ -404,7 +404,7 @@
     .t-status { font-family: var(--mono); font-size: 10px; letter-spacing: 0.5px; color: #3ddc84; text-transform: uppercase; }
 
     /* ---------- Pricing ---------- */
-    .pricing-grid { grid-template-columns: minmax(0, 440px); justify-content: center; max-width: 880px; margin: 0 auto; }
+    .pricing-grid { grid-template-columns: repeat(2, 1fr); max-width: 880px; margin: 0 auto; }
     .plan {
       position: relative;
       background: var(--bg-card);
@@ -737,27 +737,54 @@
     </section>
 
     <!-- Pricing -->
-    <section class="landing-section bg-alt">
+    <section class="landing-section bg-alt" id="preco">
       <div class="container">
         <div class="section-head center">
           <span class="badge">Investimento</span>
           <h2 class="h-sec">Escolha o plano ideal para <span class="headline-gradient">sua aprovação</span></h2>
         </div>
         <div class="pricing-grid">
-          <!-- Trimestral -->
+          <!-- Anual -->
           <div class="plan">
-            <img class="plan-mockup" src="/imagens/oferta-trimestral.webp" alt="Oferta Plano Trimestral" loading="lazy" />
-            <span class="badge plan-pill">Plano Trimestral</span>
-            <div class="price-old">de R$ 1.302,00</div>
-            <div class="price-now"><small>3x de</small> R$ 73,51</div>
-            <div class="price-cash">ou R$ 197,00 à vista</div>
+            <span class="badge plan-pill">Plano Anual</span>
+            <div class="price-now">R$ 449,90</div>
+            <div class="price-cash">1 ano de acesso completo — ou parcelado no cartão</div>
             <ul class="plan-features">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Acesso completo à plataforma por 3 meses</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Todas as 8 ferramentas de IA</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Planejador, resumos, simulados e flashcards</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Tutor IA 24h e painel de desempenho</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Meu plano personalizado com IA</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Todas as disciplinas</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Flashcards inteligentes</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Resumos completos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Tutor IA 24h</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Hacker da Banca (simulados no padrão da sua banca)</li>
             </ul>
-            <a href="https://pay.hub.la/YY70fYb2WcWVNJwNKXFV" class="btn-primary btn-full">Quero o Trimestral!
+            <a href="https://pay.hub.la/wfMSZT77hVBSh0gAZpSv" class="btn-primary btn-full">Quero o Plano Anual!
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <div class="plan-foot">🔒 Acesso imediato após a compra</div>
+          </div>
+
+          <!-- Vitalício -->
+          <div class="plan featured">
+            <div class="ribbon">Mais escolhido</div>
+            <img class="plan-mockup" src="/imagens/oferta-trimestral.webp" alt="Plano Vitalício Concursa AI" loading="lazy" />
+            <span class="badge plan-pill y">Plano Vitalício</span>
+            <div class="price-old">de R$ 1.497,00</div>
+            <div class="price-now">R$ 747,00</div>
+            <div class="price-cash">R$ 750,00 de desconto — ou parcelado no cartão</div>
+            <ul class="plan-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Tudo do Plano Anual incluso</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Acesso VITALÍCIO (para sempre)</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Hacker da Banca</li>
+            </ul>
+            <div class="bonus-divider">Bônus Exclusivos</div>
+            <ul class="plan-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Envelope Confidencial (15 primeiros)</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Instagram privado com alunos ELITE</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Sorteio de brindes exclusivos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Mentoria mensal em grupo</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Sala VIP dos concurseiros</li>
+            </ul>
+            <a href="https://pay.hub.la/RBObi2nDPbkym4ImSZsD" class="btn-primary btn-full">Quero o Vitalício!
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
             <div class="plan-foot">🔒 Acesso imediato após a compra</div>
@@ -810,7 +837,7 @@
           <span class="badge">Pronto para começar?</span>
           <h2 class="h-sec">Sua aprovação começa com <span class="headline-gradient">inteligência artificial</span></h2>
           <p class="lead" style="margin: 0 auto 28px;">Pare de estudar no escuro. Deixe a IA mostrar o caminho mais rápido para o seu cargo público.</p>
-          <a href="https://pay.hub.la/YY70fYb2WcWVNJwNKXFV" class="btn-primary">Começar agora!
+          <a href="#preco" class="btn-primary">Começar agora!
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
